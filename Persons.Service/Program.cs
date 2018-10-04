@@ -7,7 +7,7 @@ namespace Persons.Service
     {
         static void Main(string[] args)
         {
-            NancyHost host = new NancyHost(new Uri("http://localhost:1234"));
+            NancyHost host = new NancyHost(new Uri("http://localhost:1234"), new Bootstrapper());
             host.Start();
             Console.WriteLine("nancy host running...");
             Console.WriteLine("press enter to stop");

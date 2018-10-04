@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Nancy;
 using Persons.Abstractions;
+using Persons.Helpers;
 using Persons.Interfaces;
 using Persons.Models;
 using Persons.Repositories;
