@@ -1,8 +1,8 @@
 ﻿namespace Persons.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
     {
-        T Find(int id);
-        void Insert(T item);
+        TEntity Find(int id);
+        void Insert(TEntity item);
     }
 }

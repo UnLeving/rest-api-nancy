@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Persons.Repositories
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : IRepository<Person>
     {
         string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\GitHub\\task rest api\\Persons\\App_Data\\Database1.mdf\";Integrated Security=True";
 

@@ -1,7 +1,9 @@
 ﻿using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
+using Persons.Handlers;
 using Persons.Helpers;
+using Persons.Models;
 
 namespace Persons.Service
 {
@@ -10,6 +12,12 @@ namespace Persons.Service
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             AutoMapperConfig.Configure();
+        }
+
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        {
+            container.Register<ICommandHandler<Person>, PersonCommandHandler>();
+            container.Register<IQueryHandler<int, Person>, PersonQueryHandler>();
         }
     }
 }

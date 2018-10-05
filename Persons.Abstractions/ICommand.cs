@@ -1,6 +1,6 @@
 ﻿namespace Persons.Abstractions
 {
-    public interface ICommandHandler
+    public interface ICommand
     {
         dynamic CreatePerson();
     }

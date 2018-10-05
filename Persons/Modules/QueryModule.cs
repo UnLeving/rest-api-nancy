@@ -1,24 +1,20 @@
 ﻿using AutoMapper;
 using Nancy;
-using Persons.Abstractions;
-using Persons.Helpers;
-using Persons.Interfaces;
+using Persons.Handlers;
 using Persons.Models;
-using Persons.Repositories;
 
 namespace Persons.Modules
 {
-    public class QueryModule : NancyModule, IQueryHandler
+    public class QueryModule : NancyModule
     {
-        IPersonRepository repository = new PersonRepository();
-        public QueryModule()
+        public QueryModule(IQueryHandler<int, Person> queryHandler)
         {
-            Get["/api/v1/persons/{id}"] = parameters => GetPerson(parameters.id);
-        }
-        public dynamic GetPerson(int id)
-        {
-            var person = repository.Find(id);
-            return person == null ? HttpStatusCode.NotFound : Response.AsJson(Mapper.Map<PersonDto>(person));
+            Get["/api/v1/persons/{id:int}"] = parameters =>
+            {
+                Person person = queryHandler.Execute(parameters.id);
+                return person == null ? HttpStatusCode.NotFound : Response.AsJson(Mapper.Map<PersonDto>(person));
+            };
+
         }
     }
 }
