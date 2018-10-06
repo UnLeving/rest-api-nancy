@@ -97,7 +97,6 @@
     <Compile Include="Interfaces\IQueryHandler.cs" />
     <Compile Include="Handlers\PersonCommandHandler.cs" />
     <Compile Include="Handlers\PersonQueryHandler.cs" />
-    <Compile Include="Helpers\AutoMapperConfig.cs" />
     <Compile Include="Interfaces\IAgeCalc.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\Person.cs" />
