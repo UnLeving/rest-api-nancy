@@ -6,7 +6,7 @@ using Persons.Handlers;
 using Persons.Helpers;
 using Persons.Interfaces;
 using Persons.Models;
-
+using Serilog;
 namespace Persons.Service
 {
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -14,8 +14,13 @@ namespace Persons.Service
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             AutoMapperConfig.Configure();
+            Log.Logger = new LoggerConfiguration()
+              .Enrich.FromLogContext()
+              .MinimumLevel.Verbose()
+              .WriteTo.File("logs\\myapp.txt", rollingInterval: RollingInterval.Day)
+              .CreateLogger();
         }
-
+         
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             container.Register<ICommandHandler<Person>, PersonCommandHandler>();

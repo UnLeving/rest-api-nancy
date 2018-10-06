@@ -8,7 +8,7 @@ namespace Persons.Helpers
         public PersonPropValidation()
         {
             RuleFor(request => request.Name).NotEmpty().WithMessage("You must specify a username");
-            RuleFor(request => request.Age).GreaterThan(120).WithMessage("Too old");
+            RuleFor(request => request.Age).LessThan(120).WithMessage("Too old");
         }
     }
 }
