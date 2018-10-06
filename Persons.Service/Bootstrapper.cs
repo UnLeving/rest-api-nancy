@@ -1,8 +1,10 @@
-﻿using Nancy;
+﻿using FluentValidation;
+using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Persons.Handlers;
 using Persons.Helpers;
+using Persons.Interfaces;
 using Persons.Models;
 
 namespace Persons.Service
@@ -18,6 +20,7 @@ namespace Persons.Service
         {
             container.Register<ICommandHandler<Person>, PersonCommandHandler>();
             container.Register<IQueryHandler<int, Person>, PersonQueryHandler>();
+            container.Register<AbstractValidator<Person>, PersonPropValidation>();
         }
     }
 }

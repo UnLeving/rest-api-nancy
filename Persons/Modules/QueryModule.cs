@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Nancy;
-using Persons.Handlers;
+using Persons.Interfaces;
 using Persons.Models;
 
 namespace Persons.Modules
