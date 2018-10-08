@@ -6,6 +6,5 @@ namespace Persons.Models
     {
         public string Name { get; set; }
         public DateTime BirthDay { get; set; }
-        public int Age { get; set; }
     }
 }

@@ -4,7 +4,6 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Persons.Handlers;
-using Persons.Helpers;
 using Persons.Interfaces;
 using Persons.Models;
 using Serilog;
@@ -25,8 +24,7 @@ namespace Persons.Service
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             container.Register<ICommandHandler<Person>, PersonCommandHandler>();
-            container.Register<IQueryHandler<int, Person>, PersonQueryHandler>();
-            container.Register<AbstractValidator<Person>, PersonPropValidation>();
+            container.Register<IQueryHandler<int, Person>, PersonQueryHandler>();            
         }
     }
 }

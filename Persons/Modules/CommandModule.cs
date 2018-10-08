@@ -11,12 +11,20 @@ namespace Persons.Modules
         {
             Post["/api/v1/persons"] = parameters =>
             {
-                Person model = this.BindAndValidate<Person>();
-                var validator = ModelValidationResult;
-                if (!validator.IsValid)
-                    return Negotiate.WithModel(validator).WithStatusCode(HttpStatusCode.UnprocessableEntity);
+                PersonDto personDto;
+                try
+                {
+                    personDto = this.Bind<PersonDto>();
+                }
+                catch
+                {
+                    return Negotiate.WithStatusCode(HttpStatusCode.BadRequest);
+                }
 
-                commandHandler.Execute(model);
+                Person person = new Person().Create(personDto.Name, personDto.BirthDay);
+                if (person == null)
+                    return Negotiate.WithStatusCode(HttpStatusCode.UnprocessableEntity);
+                commandHandler.Execute(person);
                 return Response.AsText("Created").WithHeader("Location", "/api/v1/persons/");
             };
         }
