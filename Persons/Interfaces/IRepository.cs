@@ -1,8 +1,10 @@
-﻿namespace Persons.Interfaces
+﻿using System;
+
+namespace Persons.Interfaces
 {
     public interface IRepository<TEntity>
     {
-        TEntity Find(int id);
+        TEntity Find(Guid id);
         void Insert(TEntity item);
     }
 }

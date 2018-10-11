@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
@@ -7,6 +6,8 @@ using Persons.Handlers;
 using Persons.Interfaces;
 using Persons.Models;
 using Serilog;
+using System;
+
 namespace Persons.Service
 {
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -20,11 +21,11 @@ namespace Persons.Service
               .WriteTo.File("logs\\myapp.txt", rollingInterval: RollingInterval.Day)
               .CreateLogger();
         }
-         
+
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             container.Register<ICommandHandler<Person>, PersonCommandHandler>();
-            container.Register<IQueryHandler<int, Person>, PersonQueryHandler>();            
+            container.Register<IQueryHandler<Guid, Person>, PersonQueryHandler>();
         }
     }
 }
