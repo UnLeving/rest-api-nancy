@@ -25,7 +25,7 @@ namespace Persons.Modules
                 if (person == null)
                     return Negotiate.WithStatusCode(HttpStatusCode.UnprocessableEntity);
                 commandHandler.Execute(person);
-                return Response.AsText("Created").WithHeader("Location", "/api/v1/persons/");
+                return Response.AsText("Created").WithHeader("Location",  $"/api/v1/persons/{person.Id}");
             };
         }
     }
